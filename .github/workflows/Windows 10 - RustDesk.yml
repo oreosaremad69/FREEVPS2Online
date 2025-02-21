@@ -20,3 +20,23 @@ jobs:
 
       - name: Time Counter
         run: python time.py
+        name: Run Python Script on Windows
+
+on: [push, pull_request]
+
+jobs:
+  run-script:
+    runs-on: windows-latest  # Use Windows environment
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Run Python Script in PowerShell
+        shell: pwsh
+        run: python time.py
